@@ -2,9 +2,7 @@
 /*
  * GET home page.
  */
-var Models = require('../models/chaos_model.js')
-	, User = Models[1]
-	, Inbox = Models[2];
+var User = require('../models/chaos_model.js');
 
 exports.index = function(req, res){
 	console.log('Calling Index');
