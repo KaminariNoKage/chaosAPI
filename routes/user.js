@@ -18,6 +18,8 @@ exports.inbox = function (req, res){
 	var myName = req.params.user;
 	User.findOne({name: myName}).exec(function (err, doc){
 		//Get the first user and print to the screenie
+		if (err)
+			return
 		res.send(doc.inbox);
 	});
 };
@@ -49,7 +51,7 @@ exports.sendHi = function(req, res){
 		, touser = req.body.touser
 		, date = new Date()
 		, hi = reqq.body.hi;
-	User.findOne({name: touser}).exec(function(err, doc){
+	User.find({name: touser}).exec(function(err, doc){
 		var message = new Inbox({sender: sender, date: date, message: 'Hi!'});
 		res.redirect('/' + touser);
 	});
