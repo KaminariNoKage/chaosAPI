@@ -4,7 +4,7 @@
  */
 
 var express = require('express')
-  , require = routes('./routes')
+  , routes = require('./routes')
   , user = require('./routes/user')
   , http = require('http')
   , mongoose = require('mongoose')
