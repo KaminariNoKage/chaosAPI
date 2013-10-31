@@ -4,7 +4,7 @@
  */
 
 var express = require('express')
-  , routes = require('./routes')
+  , require = routes('./routes')
   , user = require('./routes/user')
   , http = require('http')
   , mongoose = require('mongoose')
@@ -34,7 +34,7 @@ app.get('/', routes.index);
 app.get('/:user', user.profile);  //Returns profile of a user
 app.get('/:user/inbox', user.inbox);  //Returns inbox of user
 
-app.post('/:user/update_profile', user.makeProfile);
+app.post('/user/:user/update_profile', user.makeProfile);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
