@@ -2,25 +2,23 @@
 /*
  * GET users listing.
  */
-var Models = require('../models/chaos_model.js')
-	, User = Models[1]
-	, Inbox = Models[2];
+var User = require('../models/chaos_model.js');
 
 exports.profile = function(req, res){
 	var myName = req.params.user
 	
-	User.findOne({name: myName}).exec(function (err, docs){
-		res.send(doc);
+	User.find({name: myName}).exec(function (err, docs){
+		res.send(docs[0]);
 	});
 };
 
 exports.inbox = function (req, res){
 	var myName = req.params.user;
-	User.findOne({name: myName}).exec(function (err, doc){
+	User.find({name: myName}).exec(function (err, docs){
 		//Get the first user and print to the screenie
 		if (err)
 			return
-		res.send(doc.inbox);
+		res.send(docs[0].inbox);
 	});
 };
 
@@ -52,7 +50,7 @@ exports.sendHi = function(req, res){
 		, date = new Date()
 		, hi = reqq.body.hi;
 	User.find({name: touser}).exec(function(err, doc){
-		var message = new Inbox({sender: sender, date: date, message: 'Hi!'});
+		//var message = new Inbox({sender: sender, date: date, message: 'Hi!'});
 		res.redirect('/' + touser);
 	});
 }
